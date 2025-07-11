@@ -1,0 +1,391 @@
+{
+  "info": {
+    "name": "OnSpotX Location Discovery API",
+    "description": "Complete API collection for OnSpotX Real-Time Location Discovery Backend\n\n**Features:**\n- 🌍 Real-time location discovery\n- 📍 Distance-based sorting\n- 🏷️ Category filtering\n- 📊 Service statistics\n- 🔍 Comprehensive search\n\n**Base URL:** http://localhost:3000/api/v1",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0.0"
+  },
+  "item": [
+    {
+      "name": "Discovery",
+      "description": "Main location discovery endpoints",
+      "item": [
+        {
+          "name": "Discover Places - Basic",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/discover?latitude=40.7128&longitude=-74.0060&radius=5",
+              "host": ["{{baseUrl}}"],
+              "path": ["discover"],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "40.7128",
+                  "description": "Latitude coordinate (required)"
+                },
+                {
+                  "key": "longitude",
+                  "value": "-74.0060",
+                  "description": "Longitude coordinate (required)"
+                },
+                {
+                  "key": "radius",
+                  "value": "5",
+                  "description": "Search radius in kilometers (optional, default: 5)"
+                }
+              ]
+            },
+            "description": "Basic discovery request to find nearby places within 5km radius"
+          },
+          "response": []
+        },
+        {
+          "name": "Discover Places - Restaurants Only",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/discover?latitude=40.7128&longitude=-74.0060&radius=2&category=restaurant",
+              "host": ["{{baseUrl}}"],
+              "path": ["discover"],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "40.7128",
+                  "description": "Latitude coordinate (required)"
+                },
+                {
+                  "key": "longitude",
+                  "value": "-74.0060",
+                  "description": "Longitude coordinate (required)"
+                },
+                {
+                  "key": "radius",
+                  "value": "2",
+                  "description": "Search radius in kilometers"
+                },
+                {
+                  "key": "category",
+                  "value": "restaurant",
+                  "description": "Filter by category (optional)"
+                }
+              ]
+            },
+            "description": "Find restaurants within 2km radius - matches the exact API specification"
+          },
+          "response": []
+        },
+        {
+          "name": "Discover Places - Cafes with Limit",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/discover?latitude=40.7128&longitude=-74.0060&category=cafe&limit=3",
+              "host": ["{{baseUrl}}"],
+              "path": ["discover"],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "40.7128",
+                  "description": "Latitude coordinate (required)"
+                },
+                {
+                  "key": "longitude",
+                  "value": "-74.0060",
+                  "description": "Longitude coordinate (required)"
+                },
+                {
+                  "key": "category",
+                  "value": "cafe",
+                  "description": "Filter by category"
+                },
+                {
+                  "key": "limit",
+                  "value": "3",
+                  "description": "Maximum number of results (1-50)"
+                }
+              ]
+            },
+            "description": "Find up to 3 cafes with default radius"
+          },
+          "response": []
+        },
+        {
+          "name": "Discover Places - Wide Search",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/discover?latitude=40.7128&longitude=-74.0060&radius=10&limit=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["discover"],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "40.7128",
+                  "description": "Latitude coordinate (required)"
+                },
+                {
+                  "key": "longitude",
+                  "value": "-74.0060",
+                  "description": "Longitude coordinate (required)"
+                },
+                {
+                  "key": "radius",
+                  "value": "10",
+                  "description": "Search radius in kilometers"
+                },
+                {
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of results"
+                }
+              ]
+            },
+            "description": "Wide search within 10km radius, up to 20 results"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Available Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/discover/categories",
+              "host": ["{{baseUrl}}"],
+              "path": ["discover", "categories"]
+            },
+            "description": "Get all available place categories for filtering"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Service Statistics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/discover/stats",
+              "host": ["{{baseUrl}}"],
+              "path": ["discover", "stats"]
+            },
+            "description": "Get service statistics and configuration information"
+          },
+          "response": []
+        },
+        {
+          "name": "Find Nearest Place",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/discover/nearest?latitude=40.7128&longitude=-74.0060",
+              "host": ["{{baseUrl}}"],
+              "path": ["discover", "nearest"],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "40.7128",
+                  "description": "Latitude coordinate (required)"
+                },
+                {
+                  "key": "longitude",
+                  "value": "-74.0060",
+                  "description": "Longitude coordinate (required)"
+                }
+              ]
+            },
+            "description": "Find the single nearest place to the given coordinates"
+          },
+          "response": []
+        },
+        {
+          "name": "Find Nearest Restaurant",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/discover/nearest?latitude=40.7128&longitude=-74.0060&category=restaurant",
+              "host": ["{{baseUrl}}"],
+              "path": ["discover", "nearest"],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "40.7128",
+                  "description": "Latitude coordinate (required)"
+                },
+                {
+                  "key": "longitude",
+                  "value": "-74.0060",
+                  "description": "Longitude coordinate (required)"
+                },
+                {
+                  "key": "category",
+                  "value": "restaurant",
+                  "description": "Filter by category (optional)"
+                }
+              ]
+            },
+            "description": "Find the nearest restaurant to the given coordinates"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Health & Monitoring",
+      "description": "Health check and monitoring endpoints",
+      "item": [
+        {
+          "name": "Basic Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["health"]
+            },
+            "description": "Basic health check with system information"
+          },
+          "response": []
+        },
+        {
+          "name": "Detailed Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/health/detailed",
+              "host": ["{{baseUrl}}"],
+              "path": ["health", "detailed"]
+            },
+            "description": "Detailed health check with service dependencies"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Error Testing",
+      "description": "Test error handling and validation",
+      "item": [
+        {
+          "name": "Invalid Latitude (>90)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/discover?latitude=91&longitude=-74.0060",
+              "host": ["{{baseUrl}}"],
+              "path": ["discover"],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "91",
+                  "description": "Invalid latitude (>90)"
+                },
+                {
+                  "key": "longitude",
+                  "value": "-74.0060",
+                  "description": "Valid longitude"
+                }
+              ]
+            },
+            "description": "Test validation error for invalid latitude (should return 400)"
+          },
+          "response": []
+        },
+        {
+          "name": "Invalid Longitude (<-180)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/discover?latitude=40.7128&longitude=-181",
+              "host": ["{{baseUrl}}"],
+              "path": ["discover"],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "40.7128",
+                  "description": "Valid latitude"
+                },
+                {
+                  "key": "longitude",
+                  "value": "-181",
+                  "description": "Invalid longitude (<-180)"
+                }
+              ]
+            },
+            "description": "Test validation error for invalid longitude (should return 400)"
+          },
+          "response": []
+        },
+        {
+          "name": "Missing Required Parameters",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/discover?latitude=40.7128",
+              "host": ["{{baseUrl}}"],
+              "path": ["discover"],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "40.7128",
+                  "description": "Valid latitude"
+                }
+              ]
+            },
+            "description": "Test validation error for missing longitude (should return 400)"
+          },
+          "response": []
+        },
+        {
+          "name": "Invalid Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/discover?latitude=40.7128&longitude=-74.0060&category=invalid_category",
+              "host": ["{{baseUrl}}"],
+              "path": ["discover"],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "40.7128",
+                  "description": "Valid latitude"
+                },
+                {
+                  "key": "longitude",
+                  "value": "-74.0060",
+                  "description": "Valid longitude"
+                },
+                {
+                  "key": "category",
+                  "value": "invalid_category",
+                  "description": "Invalid category"
+                }
+              ]
+            },
+            "description": "Test validation error for invalid category (should return 400)"
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000/api/v1",
+      "description": "Base URL for the OnSpotX API"
+    }
+  ]
+} 
